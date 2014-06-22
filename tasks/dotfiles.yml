@@ -1,0 +1,5 @@
+---
+
+- name: Apply gitconfig
+  template: src=templates/gitconfig.local dest={{home_dir}}/.gitconfig
+  when: apply_gitconfig != false
