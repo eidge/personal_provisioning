@@ -1,0 +1,8 @@
+---
+
+- hosts: all
+  gather_facts: false
+
+  tasks:
+    - include: tasks/dependencies.yml tags=dependencies
+    - include: tasks/hub.yml tags=hub

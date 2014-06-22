@@ -1,0 +1,16 @@
+---
+
+- name: Validate Hub Installation
+  shell: which hub
+  register: hub_path
+
+- name: Clone Hub
+  git: repo=git://github.com/github/hub.git
+       dest=/tmp/hub
+       version=master
+  when: hub_path.rc != 0
+
+- name: Install Hub
+  sudo: yes
+  shell: gem install rake && cd /tmp/hub && rake install
+  when: hub_path.rc != 0

@@ -1,0 +1,19 @@
+---
+
+- name: Install VIM
+  apt: pkg=vim state=present
+  sudo: yes
+
+- name: Install Git
+  apt: pkg=git state=present
+  sudo: yes
+
+- name: Verify RCM installation
+  stat: path={{ rcm_installation_path }}
+  register: rcm_installed
+
+- name: Install RCM
+  sudo: yes
+  shell: wget https://thoughtbot.github.io/rcm/debs/rcm_1.2.3-1_all.deb
+         && dpkg -i rcm_1.2.3-1_all.deb
+  when: rcm_installed.stat.exists == false
