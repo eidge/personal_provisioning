@@ -4,6 +4,10 @@
   apt: pkg=zsh state=present
   sudo: yes
 
+- name: Determine current user
+  shell: whoami
+  register: c_user
+
 - name: Make ZSH default shell
   sudo: yes
-  shell: chsh -s /bin/zsh vagrant
+  shell: chsh -s /bin/zsh {{ c_user.stdout }}

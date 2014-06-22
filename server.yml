@@ -7,3 +7,4 @@
     - include: tasks/dependencies.yml tags=dependencies
     - include: tasks/hub.yml tags=hub
     - include: tasks/zsh.yml tags=zsh
+    - include: tasks/dotfiles.yml tags=zsh
