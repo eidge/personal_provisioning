@@ -21,3 +21,13 @@
 - name: Install tmux
   sudo: yes
   apt: name=tmux state=present update_cache=yes
+
+- name: Validate Ack Installation
+  shell: which ack
+  register: ack_path
+  ignore_errors: yes
+
+- name: Install Ack
+  sudo: yes
+  shell: curl http://beyondgrep.com/ack-2.12-single-file > /usr/bin/ack && chmod 0755 /usr/bin/ack
+  when: ack_path.rc != 0

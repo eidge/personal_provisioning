@@ -3,6 +3,7 @@
 - name: Validate Hub Installation
   shell: which hub
   register: hub_path
+  ignore_errors: yes
 
 - name: Clone Hub
   git: repo=git://github.com/github/hub.git
